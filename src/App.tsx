@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import { createGrid } from "./utils/createGrid";
+import { handleChangeSize } from "./utils/handleChangeSize";
+import { handleSelect } from "./utils/handleSelection";
 
 function App() {
   const [size, setSize] = useState<number>(5);
@@ -10,18 +12,6 @@ function App() {
   let count = 0;
 
   const selectedInputRef = useRef<HTMLInputElement>(null);
-
-  function handleChangeSize(value: string) {
-    const size = parseInt(value);
-    if (size <= 0) setSize(3);
-    else if (size > 6) setSize(6);
-    else setSize(size);
-  }
-
-  function handleSelect(value: string) {
-    const index = parseInt(value); // string -> number;
-    setSelected(index);
-  }
 
   useEffect(() => {
     selectedInputRef.current?.classList.add("refreshing");
@@ -47,7 +37,7 @@ function App() {
               value={size}
               className="selected-size-input"
               type="number"
-              onInput={(e) => handleChangeSize(e.currentTarget.value)}
+              onInput={(e) => handleChangeSize(e.currentTarget.value, setSize)}
             />
           </div>
 
@@ -88,7 +78,9 @@ function App() {
                         <button
                           key={i * size + j}
                           id={`item-button-${i * size + j}`}
-                          onClick={() => handleSelect(index)}
+                          onClick={() =>
+                            handleSelect(String(index), setSelected)
+                          }
                         >
                           <b>{count}</b>
                         </button>
