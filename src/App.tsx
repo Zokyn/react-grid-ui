@@ -1,34 +1,66 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
-
-function createGrid(size: number = 3): number[][] {
-  const rows = size;
-  const columns = size;
-
-  const grid = Array.from({ length: rows }, () => Array(columns).fill(0));
-  return grid;
-}
+import { createGrid } from "./utils/createGrid";
 
 function App() {
-  const [size, setSize] = useState(5);
-  const [selected, setSelected] = useState(-1);
+  const [size, setSize] = useState<number>(5);
+  const [selected, setSelected] = useState<number>(-1);
+
   const grid: number[][] = createGrid(size);
   let count = 0;
+
+  const selectedInputRef = useRef<HTMLInputElement>(null);
+
+  function handleChangeSize(value: string) {
+    const size = parseInt(value);
+    if (size <= 0) setSize(3);
+    else if (size > 6) setSize(6);
+    else setSize(size);
+  }
+
+  function handleSelect(value: string) {
+    const index = parseInt(value); // string -> number;
+    setSelected(index);
+  }
+
+  useEffect(() => {
+    selectedInputRef.current?.classList.add("refreshing");
+    setTimeout(() => {
+      selectedInputRef.current?.classList.remove("refreshing");
+    }, 850);
+  }, [selected]);
+
   return (
     <>
       <h1>Grid</h1>
       <div className="flex-row">
-        <div>
+        <div id="info-panel">
           <h3>Info Panel</h3>
-          <div>
-            Size:
+          <div className="panel-row">
+            <div style={{ alignItems: "center" }}>
+              <label>Size</label>
+              <sub>
+                {size}x{size}
+              </sub>
+            </div>
             <input
               value={size}
+              className="selected-size-input"
               type="number"
-              onInput={(e) => setSize(parseInt(e.currentTarget.value))}
+              onInput={(e) => handleChangeSize(e.currentTarget.value)}
             />
           </div>
-          <div>Selected: {selected}</div>
+
+          <div className="panel-row">
+            <label>Selected</label>
+            <input
+              type="text"
+              className="selected-item-input"
+              ref={selectedInputRef}
+              value={selected >= 0 ? selected + 1 : "0"}
+              disabled
+            />
+          </div>
         </div>
         <div className="container">
           <ul className="grid-header">
@@ -56,7 +88,7 @@ function App() {
                         <button
                           key={i * size + j}
                           id={`item-button-${i * size + j}`}
-                          onClick={() => setSelected(index)}
+                          onClick={() => handleSelect(index)}
                         >
                           <b>{count}</b>
                         </button>

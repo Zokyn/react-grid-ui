@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  justify-content: start;
 }
 
 #root h1{
@@ -16,6 +17,7 @@
 .flex-row {
   display: grid;
   grid-template-columns: 260px 1fr 320px;
+  grid-template-rows: 100vh;
 }
 .container { 
   margin: 0 auto;
@@ -102,9 +104,78 @@
   text-align: center;
   font-size: 48px;
 }
+
+/* Active Item */
 .grid-item.active>button {
   background-color: rgb(127, 148, 148);
   color: rgba(0, 0, 0, 0.425);
   border: solid rgb(123, 164, 179) 5px;
   outline: none;
+}
+
+
+/* Disabled Item */
+.grid-item.disabled>button {
+  color: rgb(127, 148, 148);
+  background-color: rgba(0, 0, 0, 0.425);
+}
+
+/* INFO PANEL */
+div#info-panel {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  background-color: rgba(240, 248, 255, 0.288);
+  font-size: 24px;
+}
+#info-panel label {
+  font-weight: 600;
+}
+/* Row */
+#info-panel> .panel-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0.4em;
+  padding: 0 0.6em;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 1 32px;
+  gap: 16px;
+}
+#info-panel> .panel-row>* { 
+  height: 100%;
+}
+/* Input type=number */
+#info-panel> .panel-row input[type=number]::-webkit-inner-spin-button,
+#info-panel> .panel-row input[type=number]::-webkit-outer-spin-button {
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+#info-panel> .panel-row input[type=number] {
+  -moz-appearance: textfield;
+}
+#info-panel> .panel-row input {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  max-width: 32px;
+  /* flex-shrink: 1; */
+  border: solid grey 3px;
+  border-radius: 8px;
+  font-size: inherit;
+  font-family: 'Segoe UI Medium', 'Courier New', Courier, monospace;
+}
+/* Input Selected Label */
+#info-panel> .panel-row input.selected-item-input.refreshing {
+  background-color: rgb(127, 148, 148);
+  color: rgb(228, 248, 255);
+  border: solid rgb(123, 164, 179) 3px;
+  /* transition: all 1.5s ease-in-out; */
+}
+#info-panel> .panel-row input.selected-item-input.refreshing,
+#info-panel> .panel-row input:disabled {
+  transition: all 0.45s ease-in-out;
 }
