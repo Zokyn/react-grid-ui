@@ -1,13 +1,16 @@
 import { useState } from "react";
 import "./App.css";
 
+function createGrid(size: number = 3): number[][] {
+  const rows = size;
+  const columns = size;
+
+  const grid = Array.from({ length: rows }, () => Array(columns).fill(0));
+  return grid;
+}
+
 function App() {
-  const grid: number[][] = [
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-  ];
+  const grid: number[][] = createGrid(3);
   const [count, setCount] = useState(0);
 
   return (
