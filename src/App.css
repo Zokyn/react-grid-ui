@@ -43,39 +43,40 @@
   text-align: center;
 }
 
-#grid-row {
+.grid-row {
   display: flex;
   flex-direction: row;
   padding: 0;
   margin: 0;
   justify-content: center;
-
+  align-items: center;
 }
 .grid-header>li,
-#grid-row>*:first-child {
+.grid-row>*:first-child {
   width: 64px;
   font-size: 24px;
   color: gray;
   cursor: default;
   user-select: none;
 }
-#grid-row>*:first-child {
+.grid-row>*:first-child {
   aspect-ratio: 1/1;
   align-self: center;
   border-right: solid gray 2px;
   align-content: center;
 }
 
-#grid-row>.grid-vector {
+.grid-row>.vector{
   flex-grow: 1;
   display: flex;
   flex-direction: row;
   padding: 0;
   margin: 0;
   list-style: none;
+  justify-content: space-between;
 }
 
-.grid-vector .grid-item {
+.vector .grid-item {
   align-self: center;
   margin: 4px;
   box-shadow:  -1px 13px 24px 9px rgba(0,0,0,0.62);
@@ -100,4 +101,10 @@
 .grid-item>button>* {
   text-align: center;
   font-size: 48px;
+}
+.grid-item.active>button {
+  background-color: rgb(127, 148, 148);
+  color: rgba(0, 0, 0, 0.425);
+  border: solid rgb(123, 164, 179) 5px;
+  outline: none;
 }

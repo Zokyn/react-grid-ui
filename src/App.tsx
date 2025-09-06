@@ -11,8 +11,9 @@ function createGrid(size: number = 3): number[][] {
 
 function App() {
   const [size, setSize] = useState(5);
+  const [selected, setSelected] = useState(-1);
   const grid: number[][] = createGrid(size);
-
+  let count = 0;
   return (
     <>
       <h1>Grid</h1>
@@ -20,36 +21,52 @@ function App() {
         <div>
           <h3>Info Panel</h3>
           <div>
-            Size:{" "}
+            Size:
             <input
               value={size}
               type="number"
               onInput={(e) => setSize(parseInt(e.currentTarget.value))}
             />
           </div>
+          <div>Selected: {selected}</div>
         </div>
         <div className="container">
           <ul className="grid-header">
             {grid.map((index, i) => (
               <li>
-                <strong>{i}</strong>
+                <strong>{i + 1}</strong>
               </li>
             ))}
           </ul>
-          {grid.map((vector, i) => (
-            <div id="grid-row" key={i}>
-              <strong>{i + 1}</strong>
-              <ul className="grid-vector">
-                {vector.map((value, j) => (
-                  <li className="grid-item" key={j}>
-                    <button>
-                      <b>{i * 4 + j}</b>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {grid.map((vector, i) => {
+            return (
+              <div className="grid-row" key={i}>
+                <strong>{i + 1}</strong>
+                <ul className="vector">
+                  {vector.map((value, j) => {
+                    count++;
+                    const index = i * size + j;
+                    return (
+                      <li
+                        className={
+                          index == selected ? "grid-item active" : "grid-item"
+                        }
+                        key={j}
+                      >
+                        <button
+                          key={i * size + j}
+                          id={`item-button-${i * size + j}`}
+                          onClick={() => setSelected(index)}
+                        >
+                          <b>{count}</b>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            );
+          })}
         </div>
         <div>
           <h3>End Turn</h3>
