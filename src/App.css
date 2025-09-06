@@ -1,28 +1,73 @@
 #root {
   width: 100%;
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
 
+#root h1{
+  margin: 0;
+  padding: 0.5em 0;
+  border-bottom: solid white 2px;
+  margin: 0 0.3em;
+  align-self: center;
+  min-width: 640px;
+}
+.flex-row {
+  display: grid;
+  grid-template-columns: 260px 1fr 320px;
+}
 .container { 
   margin: 0 auto;
   padding: 2rem;
   width: inherit;
-  max-width: 1280px;
+  /* max-width: 1280px; */
+  max-width: 50vw;
   /* height: 100%; */
   background-color: black;
   border-radius: 16px;
 }
 
-#grid {
+.grid-header {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
-  flex-direction: row nowrap;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-left: 64px;
+
+}
+.grid-header>li {
+
+  text-align: center;
+}
+
+#grid-row {
+  display: flex;
+  flex-direction: row;
   padding: 0;
   margin: 0;
   justify-content: center;
 
 }
+.grid-header>li,
+#grid-row>*:first-child {
+  width: 64px;
+  font-size: 24px;
+  color: gray;
+  cursor: default;
+  user-select: none;
+}
+#grid-row>*:first-child {
+  aspect-ratio: 1/1;
+  align-self: center;
+  border-right: solid gray 2px;
+  align-content: center;
+}
 
-#grid .grid-vector {
+#grid-row>.grid-vector {
+  flex-grow: 1;
   display: flex;
   flex-direction: row;
   padding: 0;
@@ -31,22 +76,17 @@
 }
 
 .grid-vector .grid-item {
-/*   height: 124px;
-  width: 124px; */
-  flex-basis: 32px;
-  aspect-ratio: 1/1;
-  flex-grow: 1;
-  flex-shrink: 0;
   align-self: center;
   margin: 4px;
   box-shadow:  -1px 13px 24px 9px rgba(0,0,0,0.62);
   flex-grow: 1;
+  min-width: 120px;
   background-color: transparent;
 
 }
 .grid-item>button {
-  text-align: center;
-  font-size: 48px;
+
+  aspect-ratio: 1/1;
   height: 100%;
   width: 100%;
   border-radius: 16px;
@@ -56,4 +96,8 @@
   color: rgba(0, 0, 0, 0.767);
   border: transparent;
   transition: all 0.25s ease-in;
+}
+.grid-item>button>* {
+  text-align: center;
+  font-size: 48px;
 }

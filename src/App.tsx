@@ -10,27 +10,51 @@ function createGrid(size: number = 3): number[][] {
 }
 
 function App() {
-  const grid: number[][] = createGrid(3);
-  const [count, setCount] = useState(0);
+  const [size, setSize] = useState(5);
+  const grid: number[][] = createGrid(size);
 
   return (
     <>
       <h1>Grid</h1>
-      <div className="container">
-        {grid.map((vector, i) => (
-          <div id="grid" key={i}>
-            {/* <strong>Vetor {i + 1}:</strong> */}
-            <ul className="grid-vector">
-              {vector.map((value, j) => (
-                <li className="grid-item" key={j}>
-                  <button>
-                    <b>{i + 1 + j}</b>
-                  </button>
-                </li>
-              ))}
-            </ul>
+      <div className="flex-row">
+        <div>
+          <h3>Info Panel</h3>
+          <div>
+            Size:{" "}
+            <input
+              value={size}
+              type="number"
+              onInput={(e) => setSize(parseInt(e.currentTarget.value))}
+            />
           </div>
-        ))}
+        </div>
+        <div className="container">
+          <ul className="grid-header">
+            {grid.map((index, i) => (
+              <li>
+                <strong>{i}</strong>
+              </li>
+            ))}
+          </ul>
+          {grid.map((vector, i) => (
+            <div id="grid-row" key={i}>
+              <strong>{i + 1}</strong>
+              <ul className="grid-vector">
+                {vector.map((value, j) => (
+                  <li className="grid-item" key={j}>
+                    <button>
+                      <b>{i * 4 + j}</b>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div>
+          <h3>End Turn</h3>
+          <button>Selecionar</button>
+        </div>
       </div>
     </>
   );
