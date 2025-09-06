@@ -9,6 +9,30 @@ function App() {
   const [selected, setSelected] = useState<number>(-1);
 
   const grid: number[][] = createGrid(size);
+  const isActive = (index: number) =>
+    /* if has Selected */
+    selected != -1 &&
+    /* and if is the Selected */
+    (index == selected ||
+      selected === index + size || // or the Selected is it Upper Neighbour
+      selected === index - size || // or the Selected is it Lower Neighbour
+      (selected == index + 1 && // or the Selected is it Right Neighbour
+        (index + 1) % size != 0) ||
+      (selected == index - 1 && // or the Selected is it Left Neighbour
+        index - 1 >= 0 &&
+        index % size != 0) ||
+      /* ''       ''        '' Lower-right Neighbour*/
+      (selected == index + size + 1 && (index + 1) % size != 0) ||
+      /* ''       ''        '' Lower-left Neighbour*/
+      (selected == index + size - 1 &&
+        index - 1 >= 0 &&
+        (index + size - 1) % size < size - 1) ||
+      /* ''       ''       '' Upper-right Neighbour*/
+      (selected === index - size + 1 &&
+        index + 1 >= size &&
+        (index - size + 1) % size > 0) ||
+      /* ''       ''       '' Upper-left Neighbour*/
+      (selected === index - size - 1 && (index - size - 1) % size < size - 1));
   let count = 0;
 
   const selectedInputRef = useRef<HTMLInputElement>(null);
@@ -70,9 +94,9 @@ function App() {
                     const index = i * size + j;
                     return (
                       <li
-                        className={
-                          index == selected ? "grid-item active" : "grid-item"
-                        }
+                        className={`grid-item 
+                          ${isActive(index) && " active"}
+                          ${index === selected && " selected"}`}
                         key={j}
                       >
                         <button

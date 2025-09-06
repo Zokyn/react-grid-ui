@@ -88,7 +88,7 @@
 
 }
 .grid-item>button {
-
+  user-select: none;
   aspect-ratio: 1/1;
   height: 100%;
   width: 100%;
@@ -113,6 +113,13 @@
   outline: none;
 }
 
+/* Selected Item */
+.grid-item.selected>button {
+  color: rgb(100, 50, 16);
+  background-color: rgba(250, 211, 243, 0.473);
+  border: solid rgb(100, 50, 16) 1px;
+  cursor: default;
+}
 
 /* Disabled Item */
 .grid-item.disabled>button {
