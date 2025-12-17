@@ -78,7 +78,7 @@ function App() {
         </div>
         <div className="container">
           <ul className="grid-header">
-            {grid.map((index, i) => (
+            {grid.map((_, i) => (
               <li>
                 <strong>{i + 1}</strong>
               </li>
@@ -89,7 +89,7 @@ function App() {
               <div className="grid-row" key={i}>
                 <strong>{i + 1}</strong>
                 <ul className="vector">
-                  {vector.map((value, j) => {
+                  {vector.map((_, j) => {
                     count++;
                     const index = i * size + j;
                     return (
@@ -116,10 +116,7 @@ function App() {
             );
           })}
         </div>
-        <div>
-          <h3>End Turn</h3>
-          <button>Selecionar</button>
-        </div>
+        <div></div>
       </div>
     </>
   );
