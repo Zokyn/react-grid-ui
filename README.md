@@ -1,6 +1,6 @@
 # Grid UI
 
-Uma aplicação simples com grid escalonável para testar conhecimentos em react.
+Uma aplicação com grid escalonável que permite seleção de quadrado baseado em vizinhaças para testar conhecimentos em react.
 
 ## Descrição
 
