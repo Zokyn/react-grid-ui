@@ -13,7 +13,9 @@
   margin: 0 0.3em;
   align-self: center;
   min-width: 640px;
+  width: 100%;
 }
+
 .main-row {
   display: grid;
   grid-template-columns: 260px 1fr 320px;
@@ -133,6 +135,7 @@ div#info-panel {
   justify-content: start;
   background-color: rgba(240, 248, 255, 0.288);
   font-size: 24px;
+  border-end-end-radius: 16px;
 }
 #info-panel label {
   font-weight: 600;
@@ -186,9 +189,25 @@ div#info-panel {
   transition: all 0.45s ease-in-out;
 }
 
+#credits {
+
+  float: inline-end;
+  font-size: 18px;
+  color: rgb(196, 196, 196)
+}
+#credits.panel-row {
+  margin-top: auto;
+  padding-bottom: 1em;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0;
+  line-height: 0;
+}
 @media (max-width: 1048px) {
+
   .main-row {
     display: flex;
+    flex-direction: column;
   }
   .container { 
     margin: 0 auto;
@@ -197,7 +216,9 @@ div#info-panel {
   }
   /* Info Panel */
   div#info-panel {
-    display: none;
+    display: flex;
+    border-end-end-radius: 0;
+
   }
   /* Grid Item */
   .vector .grid-item {

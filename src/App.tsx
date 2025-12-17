@@ -49,7 +49,6 @@ function App() {
       <h1>Grid</h1>
       <div className="main-row">
         <div id="info-panel">
-          <h3>Info Panel</h3>
           <div className="panel-row">
             <div style={{ alignItems: "center" }}>
               <label>Size</label>
@@ -74,6 +73,13 @@ function App() {
               value={selected >= 0 ? selected + 1 : "0"}
               disabled
             />
+          </div>
+
+          <div id="credits" className="panel-row">
+            <span>Desenvolvido por</span>
+            <a href="https://github.com/Zokyn/react-grid-ui">
+              Gustavo Casaes Alves
+            </a>
           </div>
         </div>
         <div className="container">
