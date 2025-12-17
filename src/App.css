@@ -14,7 +14,7 @@
   align-self: center;
   min-width: 640px;
 }
-.flex-row {
+.main-row {
   display: grid;
   grid-template-columns: 260px 1fr 320px;
   grid-template-rows: 100vh;
@@ -23,8 +23,8 @@
   margin: 0 auto;
   padding: 2rem;
   width: inherit;
-  /* max-width: 1280px; */
-  max-width: 50vw;
+  max-width: 1280px;
+  /* max-width: 50vw; */
   /* height: 100%; */
   background-color: black;
   border-radius: 16px;
@@ -41,7 +41,6 @@
 
 }
 .grid-header>li {
-
   text-align: center;
 }
 
@@ -84,8 +83,8 @@
   box-shadow:  -1px 13px 24px 9px rgba(0,0,0,0.62);
   flex-grow: 1;
   min-width: 120px;
+  width: 100%;
   background-color: transparent;
-
 }
 .grid-item>button {
   user-select: none;
@@ -185,4 +184,27 @@ div#info-panel {
 #info-panel> .panel-row input.selected-item-input.refreshing,
 #info-panel> .panel-row input:disabled {
   transition: all 0.45s ease-in-out;
+}
+
+@media (max-width: 1048px) {
+  .main-row {
+    display: flex;
+  }
+  .container { 
+    margin: 0 auto;
+    padding: 0rem;
+    min-width: 545px;
+  }
+  /* Info Panel */
+  div#info-panel {
+    display: none;
+  }
+  /* Grid Item */
+  .vector .grid-item {
+    min-width: 5em;
+  }
+  .grid-item>button>* {
+    text-align: center;
+    font-size: 2rem;
+  }
 }

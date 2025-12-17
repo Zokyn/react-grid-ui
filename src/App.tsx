@@ -47,7 +47,7 @@ function App() {
   return (
     <>
       <h1>Grid</h1>
-      <div className="flex-row">
+      <div className="main-row">
         <div id="info-panel">
           <h3>Info Panel</h3>
           <div className="panel-row">
@@ -116,7 +116,6 @@ function App() {
             );
           })}
         </div>
-        <div></div>
       </div>
     </>
   );

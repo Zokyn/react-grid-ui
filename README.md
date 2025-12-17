@@ -6,7 +6,9 @@ Uma aplicação com grid escalonável que permite seleção de quadrado baseado 
 
 A aplicação consta em um container quadricular com uma grade, por padrão 5x5, podendo ser alterado no panel na lateral esquerda de maneira dinâmica. 
 
-## Execução (development mode)
+## Execução 
+
+### Development
 
 Para executar o programa é necessário verificar se todos os pacotes do `package.json` foi instalado. Para isso: 
 
@@ -19,3 +21,7 @@ e por fim basta executar o comando para rodar o projeto em desenvolvimento:
 ```
     npm run dev
 ```
+
+### Deploy 
+
+https://react-grid-ui.vercel.app
